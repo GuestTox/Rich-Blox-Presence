@@ -1,0 +1,6 @@
+requests
+re
+pystray
+pillow
+psutil
+pypresence
