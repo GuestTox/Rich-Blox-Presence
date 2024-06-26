@@ -31,7 +31,6 @@ while True:
         if not thread.is_alive(): break
         for process in psutil.process_iter():
             if process.name() == "RobloxPlayerBeta.exe":
-                print("working")
                 try:
                     if cmdline != process.cmdline()[1]:
                         cmdline = process.cmdline()[1]
@@ -39,7 +38,8 @@ while True:
                         r = re.search(r'placeId%3D\d+', cmdline)
                         placeID = r.group(0)[10:]
 
-                        r = requests.get(f"https://www.roblox.com/games/{placeID}/better-discovery")
+                        gameUrl = f"https://www.roblox.com/games/{placeID}/"
+                        r = requests.get(gameUrl)
                         placeName = str(re.search(r'<h1 class="game-name" title=".+">', r.text).group(0)[11:]).split('"')[2]
 
                         launctime = re.search(r'launchtime:\d+', cmdline)
@@ -48,14 +48,16 @@ while True:
                             details="Playing Roblox",
                             state=f"Currently in {placeName}",
                             start=launchtime,
-                            large_image="icon.png",
+                            large_image="https://github.com/GuestTox/Rich-Blox-Presence/blob/main/icon.png?raw=true",
                             large_text="Roblox SDK by GuestTox",
+                            buttons=[
+                                {"label": "See game page", "url": gameUrl},
+                            ]
                         )
                         
                         break
                 except Exception as e:
-                    if e is psutil.NoSuchProcess: pass
-                    else: raise e
+                    if isinstance(e, psutil.NoSuchProcess): pass
                 break
         else:
             DiscordRPC.clear()
