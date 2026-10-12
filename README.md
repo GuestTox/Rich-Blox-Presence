@@ -1,5 +1,20 @@
-# Roblox-Discord RPC Integration
-As the name says it, it's an app that runs in the background and updates your Discord RPC to show what you are currently playing.
+# Rich Blox Presence 🎮
 
-# DISCONTINUED
-Roblox implemented their own RPC feature inside the base game which is why I quit this project.
+A lightweight Python script that detects when you are playing Roblox and displays your current game, server details, and a direct link to the game page on your Discord Rich Presence (RPC).
+
+---
+
+## Features
+
+* **Real-Time Detection:** Automatically detects when `RobloxPlayerBeta.exe` starts up and fetches the game you are playing.
+* **Rich Presence Details:** Displays the game's title, elapsed play time, and a clickable button to open the Roblox game page directly from Discord.
+* **System Tray Integration:** Runs quietly in your system tray with a custom icon, featuring quick links and an easy exit option.
+
+---
+
+## Prerequisites & Dependencies
+
+Make sure you have Python installed along with the required libraries. You can install them using `pip`:
+
+```bash
+pip install psutil requests pystray pillow pypresence
